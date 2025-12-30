@@ -12,7 +12,6 @@ const WelcomeScreen = () => {
     if (!roomId) {
       setRoomId(inputRoomId);
     }
-
     setShouldJoin(true);
   };
 
