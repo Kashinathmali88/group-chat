@@ -9,9 +9,11 @@ export const ChatContextProvider = ({ children }) => {
   const [roomId, setRoomId] = useState(null);
   const navigate = useNavigate();
   const socket = useRef(null);
+  const mode = import.meta.env.NODE_ENV;
 
   useEffect(() => {
-    socket.current = new WebSocket("ws://localhost:3000");
+    let url = mode === "dev" ? "ws://localhost:3000" : import.meta.env.BASEURL;
+    socket.current = new WebSocket(url);
     socket.current.onopen = () => console.log("Connection established");
 
     socket.current.onmessage = (event) => {
