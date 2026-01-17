@@ -24,7 +24,7 @@ const WelcomeScreen = () => {
     if (!shouldJoin || !roomId) return;
 
     socket.current.send(
-      JSON.stringify({ type: "join", roomId, senderId: userId.current })
+      JSON.stringify({ type: "join", roomId, senderId: userId.current }),
     );
 
     navigate("/chat");
@@ -52,7 +52,7 @@ const WelcomeScreen = () => {
               {/* Copy Button */}
               <button
                 onClick={() => navigator.clipboard.writeText(roomId)}
-                className="bg-white text-blue-600 px-2 py-1 rounded-md text-sm hover:bg-blue-100 transition"
+                className="bg-white cursor-pointer text-blue-600 px-2 py-1 rounded-md text-sm hover:bg-blue-100 transition"
               >
                 Copy
               </button>
@@ -60,14 +60,14 @@ const WelcomeScreen = () => {
           )}
           <button
             onClick={() => setJoinModle(true)}
-            className="w-52 py-3 rounded-xl bg-blue-600 text-white font-semibold shadow-lg active:scale-95"
+            className="w-52 py-3 cursor-pointer rounded-xl bg-blue-600 text-white font-semibold shadow-lg active:scale-95"
           >
             Join Chat
           </button>
 
           <button
             onClick={() => generateRoomId()}
-            className="w-52 py-3 rounded-xl bg-emerald-600 text-white font-semibold shadow-lg active:scale-95"
+            className="w-52 py-3 cursor-pointer rounded-xl bg-emerald-600 text-white font-semibold shadow-lg active:scale-95"
           >
             Create RoomId
           </button>
@@ -87,7 +87,7 @@ const WelcomeScreen = () => {
           />
           <button
             onClick={() => handleJoin()}
-            className="w-full mt-4 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700"
+            className="w-full mt-4 py-2 cursor-pointer rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700"
           >
             Continue
           </button>
@@ -97,7 +97,7 @@ const WelcomeScreen = () => {
               setJoinModle(false);
               setError(null);
             }}
-            className="w-full mt-2 text-sm text-gray-500"
+            className="w-full mt-2 cursor-pointer text-sm text-gray-500"
           >
             Cancel
           </button>

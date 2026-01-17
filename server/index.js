@@ -10,6 +10,7 @@ wss.on("connection", (socket) => {
     const { type, roomId, message, senderId } = JSON.parse(e.toString());
 
     if (type === "join") {
+      socket.roomId = roomId;
       if (!allConnection[roomId]) {
         allConnection[roomId] = [socket];
       } else {
@@ -28,6 +29,15 @@ wss.on("connection", (socket) => {
       allConnection[roomId]?.forEach((client) => {
         client.send(payload);
       });
+    }
+  });
+
+  socket.on("close", () => {
+    const roomId = socket.roomId;
+    if (!roomId || !allConnection[roomId]) return;
+
+    if (allConnection[roomId].length === 0) {
+      delete allConnection[roomId];
     }
   });
 });
